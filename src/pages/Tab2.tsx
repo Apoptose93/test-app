@@ -1,25 +1,26 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab2.css';
 
-const Tab2: React.FC = () => {
+import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner';
+
+const Tab1: React.FC = () => {
+  const openScanner = async () => {
+    const data = await BarcodeScanner.scan();
+    console.log(`Barcode data: ${data.text}`);
+  };
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
+          <IonTitle>Tab 1</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
+      <IonContent>
+        <IonButton onClick={openScanner}>Scan barcode</IonButton>
       </IonContent>
     </IonPage>
   );
 };
 
-export default Tab2;
+export default Tab1
